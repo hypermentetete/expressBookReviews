@@ -6,6 +6,7 @@ const genl_routes = require('./router/general.js').general;
 
 let users = []
 
+// Helping functions to authenticate users
 // Check if a user with the given username already exists
 const doesExist = (username) => {
     // Filter the users array for any user with the same username
