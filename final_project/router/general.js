@@ -71,10 +71,18 @@ public_users.get('/author/:author',function (req, res) {
 
 // Get all books based on title
 public_users.get('/title/:title',function (req, res) {
-  //get books by title
-  const arrayBooks = Object.values(books);
-  const selectedBooks = arrayBooks.filter((book) => {return book.title === req.params.title})
-  res.send(selectedBooks);
+    // Promise to get books by author
+    let myPromise = new Promise ((resolve, reject) => {
+        console.log("resolving myPromise listing books by title")
+        const arrayBooks = Object.values(books);
+        const selectedBooks = arrayBooks.filter((book) => {return book.title === req.params.title})
+        res.send(selectedBooks);
+    })
+
+    //get specific book
+    myPromise.then((bookList) => {
+        res.send(bookList);
+    })
 });
 
 //  Get book review
